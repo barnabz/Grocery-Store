@@ -1,0 +1,15 @@
+{% extends "jazzmin/base.html" %}
+{% load static %}
+
+{% block branding %}
+  <h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+      <img src="{% static 'img/logo.png' %}" alt="Logo" style="height:32px; vertical-align: middle;">
+      Lapaulla
+    </a>
+  </h1>
+{% endblock %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin.css' %}">
+{% endblock %}

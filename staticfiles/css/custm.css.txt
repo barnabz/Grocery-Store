@@ -1,0 +1,58 @@
+/* Header title color */
+.jm-header-title {
+    color: #4CAF50 !important;
+    font-weight: bold;
+}
+
+/* Sidebar brand name (text beside the logo) */
+.main-sidebar .brand-link .brand-text {
+    color: #4CAF50 !important;
+    font-size: 1.2rem;
+}
+
+/* Top navigation bar background */
+.main-header {
+    background-color: #2c3e50 !important;
+    border-bottom: none;
+}
+
+/* Sidebar background and text */
+.main-sidebar {
+    background-color: #1e282c !important;
+    color: #ffffff !important;
+}
+
+.main-sidebar .nav-link {
+    color: #ccc !important;
+}
+
+.main-sidebar .nav-link.active,
+.main-sidebar .nav-link:hover {
+    background-color: #4CAF50 !important;
+    color: #fff !important;
+}
+
+/* Table headers on list pages */
+.content .table thead th {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+/* Footer */
+.main-footer {
+    background-color: #2c3e50 !important;
+    color: white;
+    text-align: center;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #4CAF50 !important;
+    border-color: #4CAF50 !important;
+}
+
+.btn-primary:hover {
+    background-color: #45a049 !important;
+    border-color: #3e8e41 !important;
+}

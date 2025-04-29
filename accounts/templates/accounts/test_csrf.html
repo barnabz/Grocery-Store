@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSRF Test</title>
+</head>
+<body>
+    <form method="post" action="/accounts/test_csrf/">
+        {% csrf_token %}
+        <button type="submit">Test CSRF</button>
+    </form>
+</body>
+</html>
