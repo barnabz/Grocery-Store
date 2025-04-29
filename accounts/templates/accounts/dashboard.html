@@ -1,0 +1,7 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2>Welcome to your Dashboard</h2>
+<p>Hello, {{ request.user.username }}!</p>
+<p>Your wallet balance: <strong style="color: green;">₦{{ wallet_balance|floatformat:2 }}</strong></p>
+<a href="{% url 'account:profile' %}">Go to Profile</a>
+{% endblock %}

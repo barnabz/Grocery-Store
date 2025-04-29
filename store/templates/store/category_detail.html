@@ -1,0 +1,16 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<h2>Products in {{ category.name }}</h2>
+
+<div class="products">
+    {% for product in products %}
+        <div class="product-item">
+            <h3>{{ product.name }}</h3>
+            <p>₦{{ product.price }}</p>
+        </div>
+    {% empty %}
+        <p>No products available in this category.</p>
+    {% endfor %}
+</div>
+{% endblock %}

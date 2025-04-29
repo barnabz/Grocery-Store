@@ -1,0 +1,354 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAPAULLA GROCERIES{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f9f9f9;
+        }
+
+        header {
+            background-color: #006400;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            z-index: 100; /* Add this line */
+        }
+
+        header h1 a {
+            color: white;
+            text-decoration: none;
+            margin-right: auto;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .search-container {
+            margin-right: 10px;
+        }
+
+        main {
+            padding-bottom: 80px;
+            padding-top: 1rem;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 4px;
+        }
+
+        .message.success { background-color: #d4edda; color: #155724; }
+        .message.error { background-color: #f8d7da; color: #721c24; }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-align: center;
+            color: #333;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .bottom-nav a.active {
+            color: #006400;
+            font-weight: bold;
+        }
+
+        .bottom-nav i {
+            display: block;
+            font-size: 18px;
+        }
+
+        /* Account Dropdown */
+        .account-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .account-trigger {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+
+        .account-dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            z-index: 100;
+            min-width: 150px;
+            overflow: hidden;
+        }
+
+        .account-dropdown-menu a,
+        .account-dropdown-menu button {
+            display: block;
+            padding: 12px 18px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .account-dropdown-menu a:hover,
+        .account-dropdown-menu button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .category-menu {
+            display: none; /* Initially hidden, will be toggled by JS */
+            position: absolute;
+            top: 100%; /* Position below the header */
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            width: 250px; /* Adjust as needed */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .category-menu.active {
+            display: block;
+        }
+
+        .category-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-menu ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .category-menu ul li:last-child {
+            border-bottom: none;
+        }
+
+        .category-menu ul li a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 5px 10px;
+        }
+
+        .category-menu ul li a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            padding: 0;
+            margin-right: 10px; /* Add some spacing */
+        }
+        .left-section {
+            display: flex; /* Enable flexbox for the left section */
+            align-items: center; /* Vertically center items */
+        }
+
+    </style>
+</head>
+<header class="main-header">
+    <div class="container">
+        <div class="left-section">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <nav class="category-menu" id="categoryMenu">
+                <ul>
+                    {% for category in categories %}
+                        {% if category.slug %}
+                         <li><a href="{% url 'store:category' category.slug %}">{{ category.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+            <a href="{% url 'store:home' %}" class="logo">
+                <span class="brand-main">LAPAULLA</span>
+                <span class="highlighted-brand">GROCERIES</span>
+            </a>
+
+        </div>
+
+        <form method="GET" action="{% url 'store:search' %}" class="search-bar">
+            <input type="text" name="q" placeholder="Search products, brands and categories">
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="right-section">
+            <div class="account-dropdown">
+                <button class="account-trigger" id="accountTrigger">
+                    {% if user.is_authenticated %}
+                        Hi, {{ user.first_name|default:user.username }}
+                    {% else %}
+                        Account
+                    {% endif %}
+                    <svg width="18" height="18" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z" fill="currentColor" />
+                    </svg>
+                </button>
+
+                <div class="account-dropdown-menu" id="accountMenu">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'account:profile' %}">Account</a>
+                        <form method="post" action="{% url 'account:logout' %}" style="margin: 0;">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'account:login' %}">Login</a>
+                        <a href="{% url 'account:register' %}">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <a href="{% url 'store:cart' %}" class="cart-icon">🛒 Cart</a>
+            <a href="{% url 'store:wallet' %}" class="wallet-link">💼 Wallet</a>
+        </div>
+    </div>
+</header>
+
+
+
+    <main>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="{% url 'store:home' %}" class="{% if request.path == '/' %}active{% endif %}">
+            <i>🏠</i> Home
+        </a>
+        <a href="#" id = "bottomCategories">
+            <i>📦</i> Categories
+        </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'store:cart' %}">
+            <i>🛒</i> Cart ({{ cart_item_count }})
+        </a>
+        <a href="{% url 'store:wallet' %}">
+            Wallet
+        </a>
+        {% endif %}
+    </nav>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const categoryMenu = document.getElementById('categoryMenu');
+        const categoryList = categoryMenu.querySelector('ul');
+
+
+
+        function loadCategories() {
+            categoryList.innerHTML = ''; // Clear any existing content
+             if (categories && categories.length > 0) {
+                categories.forEach(category => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = `/store/category/${category.slug}`;  //  Use the category slug
+                    link.textContent = category.name;
+                    listItem.appendChild(link);
+                    categoryList.appendChild(listItem);
+                });
+             }
+             else{
+                const listItem = document.createElement('li');
+                listItem.textContent = "No categories available";
+                categoryList.appendChild(listItem);
+             }
+        }
+
+        if (menuToggle) { // Check if menuToggle element exists
+            menuToggle.addEventListener('click', () => {
+                console.log("menuToggle clicked!");
+                categoryMenu.classList.toggle('active');
+                console.log("categoryMenu.classList:", categoryMenu.classList);
+            });
+        }
+        else{
+            console.log("menuToggle is null.  Check HTML ID");
+        }
+
+        //  Call loadCategories when the page loads
+        window.onload = function() {
+            loadCategories();
+             console.log("Page loaded");
+        };
+
+        //make bottom nav categories work
+        const bottomCategories = document.getElementById('bottomCategories');
+        if(bottomCategories){
+             bottomCategories.addEventListener('click', () => {
+                categoryMenu.classList.toggle('active');
+            });
+        }
+
+
+        // Account dropdown toggle
+        const accountTrigger = document.getElementById('accountTrigger');
+        const accountMenu = document.getElementById('accountMenu');
+
+        if (accountTrigger) {
+            accountTrigger.addEventListener('click', () => {
+                accountMenu.style.display = accountMenu.style.display === 'block' ? 'none' : 'block';
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            if (accountMenu && !accountMenu.contains(event.target) && event.target !== accountTrigger) {
+                accountMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

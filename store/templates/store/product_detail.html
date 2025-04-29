@@ -1,0 +1,23 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="product-detail">
+    <h2>{{ product.name }}</h2>
+
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+    {% endif %}
+
+    <p><strong>Price:</strong> ₦{{ product.price|floatformat:2 }}</p>
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>In Stock:</strong> {{ product.stock_quantity }}</p>
+
+    <form method="post" action="{% url 'store:add_to_cart' product.id %}">
+      {% csrf_token %}
+      <button type="submit">Add to Cart</button>
+    </form>
+
+    <p><a href="{% url 'store:home' %}">← Back to Store</a></p>
+  </div>
+{% endblock %}
