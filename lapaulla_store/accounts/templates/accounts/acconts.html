@@ -1,0 +1,29 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h4>User Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Username:</strong> {{ user.username }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <h5>Wallet Information</h5>
+                        <p><strong>Current Balance:</strong> ₦{{ wallet_balance|floatformat:2 }}</p>
+                        <p><a href="{% url 'store:wallet' %}" class="btn btn-outline-info btn-sm">View Wallet Details</a></p>
+
+                        <h5>Order History</h5>
+                        <p><a href="{% url 'orders:order_history' %}" class="btn btn-outline-info btn-sm">View Order History</a></p>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

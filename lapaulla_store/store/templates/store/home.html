@@ -1,0 +1,85 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- 🏪 Store Welcome Section -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+    <h2>Welcome to LAPAULLA GROCERIES</h2>
+    {% if request.user.is_authenticated %}
+        <div style="text-align: right;">
+            Wallet Balance: <strong style="color: green;">₦{{ wallet_balance|floatformat:2 }}</strong>
+        </div>
+    {% endif %}
+</div>
+
+<!-- 🥣 Soup Kits Section -->
+<h2>Soup Kits</h2>
+<section class="products">
+    {% for kit in soup_kits %}
+        <div class="product-item">
+            <div class="product-image-box">
+                {% if kit.image %}
+                    <img src="{{ kit.image.url }}" alt="{{ kit.name }}" class="product-image">
+                {% else %}
+                    <img src="{% static 'images/default_product.png' %}" alt="No Image" class="product-image">
+                {% endif %}
+            </div>
+            <div class="product-info">
+                <div class="badge">Soup Kit</div>
+                <h3 class="product-name">{{ kit.name }}</h3>
+                <div class="price">
+                    <span class="current-price">₦{{ kit.price }}</span>
+                </div>
+                <form method="post" action="{% url 'store:add_to_cart' kit.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    {% empty %}
+        <p>No soup kits found.</p>
+    {% endfor %}
+</section>
+
+
+<!-- 🛒 Regular Products Section -->
+<h2>Available Products</h2>
+<section class="products">
+    {% for product in products %}
+        <div class="product-card">
+            <a href="{% url 'store:product_detail' product.id %}" style="text-decoration: none; color: inherit;">
+                <div class="product-image-box">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image" />
+                    {% else %}
+                        <img src="{% static 'images/default_product.png' %}" alt="No Image" class="product-image" />
+                    {% endif %}
+                </div>
+
+                <div class="product-info">
+                    <div class="badge">Main Store</div>
+                    <h3 class="product-name">{{ product.name }}</h3>
+
+                    <div class="price">
+                        <span class="current-price">₦{{ product.price|floatformat:0 }}</span>
+                    </div>
+
+                    <div class="rating">⭐⭐⭐⭐☆</div>
+
+                    {% if product.stock_quantity %}
+                        <div class="stock-left" style="color: #c0392b; font-size: 0.85rem;">
+                            Only {{ product.stock_quantity }} left in stock!
+                        </div>
+                    {% endif %}
+                </div>
+            </a>
+
+            <form method="post" action="{% url 'store:add_to_cart' product.id %}">
+                {% csrf_token %}
+                <button class="add-to-cart-btn" type="submit">Add to Cart</button>
+            </form>
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+/* Top header */
+#header {
+    background-color: #28a745; /* Green */
+    border-bottom: 4px solid #ffc107; /* Yellow */
+}
+
+/* Header text */
+#branding h1 {
+    color: white;
+}
+
+/* Table module headers */
+.module caption {
+    background-color: #ffc107; /* Yellow */
+    color: #000;
+}
+
+/* Buttons */
+.button, input[type="submit"], input[type="button"], .submit-row input {
+    background-color: #28a745;
+    color: white;
+    border: 1px solid #28a745;
+}
+
+.button:hover, input[type="submit"]:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

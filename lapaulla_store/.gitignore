@@ -1,0 +1,95 @@
+# Python bytecode (.pyc, .pyo, .pyd)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*$py.class
+
+# Compiled files
+*.com
+*.class
+*.exe
+*.dll
+*.so
+*.o
+*.a
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+*/env/
+*/.venv/
+
+# Django specific
+*.log
+*.pot
+[Dd]atabase*
+local_settings.py
+#media/  # Important:  Only ignore if you *don't* want to track media in Git
+#static/  #  Only ignore if you *don't* want to track static files.
+#/staticfiles/ # If you collect static files to this folder
+
+# Media files (optional - include if you don't want to track in git)
+# *.jpg
+# *.png
+# *.gif
+# *.svg
+# *.mp4
+# *.avi
+# *.pdf
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+~$*
+*.swp
+*.swo
+.fuse_hidden*
+.directory
+*~
+*.bak
+*.orig
+*.pyi
+
+# Packages
+*.egg
+*.egg-info
+dist/
+build/
+eggs/
+parts/
+bin/
+var/
+sdist/
+*.whl
+pkg/
+*.manifest
+
+# Editor and IDE related files
+.idea/
+*.project
+*.workspace
+*.tmproj
+*.sublime-project
+*.sublime-workspace
+nbproject/
+*.jbuilder
+.vscode/
+
+# Temporary files
+*~
+\#*\#
+.*.swp
+.lock
+*.tmp
+temp/
+tmp/
+*.log
+*.out
+*.pid
+*.seed
+*.bundle
+cheetah-cache/

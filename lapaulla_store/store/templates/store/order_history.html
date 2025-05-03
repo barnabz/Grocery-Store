@@ -1,0 +1,13 @@
+<!-- store/templates/store/order_history.html -->
+{% extends 'store/base.html' %}
+{% block title %} - Order History {% endblock %}
+{% block content %}
+    <h2>Your Orders</h2>
+    {% if orders %}
+        {% for order in orders %}
+            <p>Order #{{ order.id }} - ${{ order.total_price }} - Status: {{ order.status }}</p>
+        {% endfor %}
+    {% else %}
+        <p>No orders yet.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+<!-- myapp/templates/store/checkout.html -->
+{% extends 'store/base.html' %}
+{% block title %} - Checkout{% endblock %}
+{% block content %}
+    <h2>Checkout</h2>
+    <p>Total: ${{ total|floatformat:2 }}</p>
+    <p>Wallet Balance: ${{ wallet_balance|floatformat:2 }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <label for="shipping_address">Shipping Address:</label>
+        <textarea id="shipping_address" name="shipping_address" required></textarea>
+        <label>
+            <input type="checkbox" name="use_wallet" {% if wallet_balance >= total %}checked{% endif %}>
+            Pay with Wallet (Balance: ${{ wallet_balance|floatformat:2 }})
+        </label>
+        <button type="submit">Place Order</button>
+    </form>
+{% endblock %}

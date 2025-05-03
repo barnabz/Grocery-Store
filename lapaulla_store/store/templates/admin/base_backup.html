@@ -1,0 +1,12 @@
+{% extends "jazzmin/base_site.html" %}
+
+{% block title %}Lapaulla Admin{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">💥 IT WORKS 💥</h1>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/admin_custom.css' %}">
+{% endblock %}

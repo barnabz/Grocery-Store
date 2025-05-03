@@ -1,0 +1,17 @@
+{% extends "jazzmin/login.html" %}
+{% load static %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="login-box">
+    <h1>Login</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Login</button>
+    </form>
+  </div>
+{% endblock %}
