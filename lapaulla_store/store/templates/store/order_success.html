@@ -1,0 +1,8 @@
+<!-- myapp/templates/store/order_success.html -->
+{% extends 'store/base.html' %}
+{% block title %} - Order Success{% endblock %}
+{% block content %}
+    <h2>Order Placed Successfully!</h2>
+    <p>Thank you for shopping at LAPAULLA FOODS. You'll receive a confirmation soon.</p>
+    <a href="{% url 'home' %}">Continue Shopping</a>
+{% endblock %}

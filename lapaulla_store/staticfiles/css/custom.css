@@ -1,0 +1,274 @@
+/* ===============================
+   🎨 FRONTEND SITE STYLES
+================================= */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* === HEADER === */
+header {
+    background-color: #1d572a; /* brand green */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+header h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+/* === NAVIGATION === */
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.top-nav nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.top-nav nav ul li {
+    margin: 0 10px;
+}
+
+.top-nav nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+/* === HERO SECTION === */
+.hero {
+    background: #e5f5e0;
+    padding: 40px 20px;
+    text-align: center;
+}
+.hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+.hero .highlight {
+    font-weight: bold;
+    background-color: #f3c901; /* brand yellow */
+    color: #000000;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* === SEARCH BAR === */
+.search-bar {
+    text-align: center;
+    margin: 20px;
+}
+.search-bar input[type="text"] {
+    padding: 8px;
+    width: 70%;
+    max-width: 300px;
+}
+.search-bar button {
+    padding: 8px 12px;
+    background-color: #1d572a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.search-bar button:hover {
+    background-color: #14401f;
+}
+
+/* === CATEGORIES === */
+.categories {
+    padding: 0 20px;
+}
+.categories h3 {
+    font-size: 1.2rem;
+}
+.categories ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.categories li {
+    margin-right: 10px;
+}
+.categories a {
+    text-decoration: none;
+    background-color: #eee;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #333;
+}
+
+/* === PRODUCTS === */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.product {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    text-align: center;
+}
+.product h4 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+}
+.product p {
+    margin: 5px 0;
+}
+.product a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #1d572a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* === FOOTER === */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1d572a;
+    color: white;
+    margin-top: 40px;
+}
+
+/* === MESSAGES === */
+.message {
+    padding: 10px;
+    margin: 10px 0;
+}
+.message.success {
+    background-color: #dff0d8;
+}
+.message.error {
+    background-color: #f2dede;
+}
+.message.info {
+    background-color: #d9edf7;
+}
+
+/* === FORMS === */
+form {
+    margin: 10px 0;
+}
+form input[type="text"],
+form input[type="password"] {
+    padding: 5px;
+    margin-right: 5px;
+}
+form button {
+    padding: 5px 10px;
+    background-color: #1d572a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #14401f;
+}
+
+/* === ORDER HISTORY / PARAGRAPHS === */
+p {
+    margin: 5px 0;
+}
+
+/* ===============================
+   🚧 ADMIN / JAZZMIN OVERRIDES
+================================= */
+.navbar, .main-header, .brand-link,
+.sidebar, .main-sidebar {
+    background-color: #1d572a !important;
+    color: white !important;
+}
+
+.sidebar a, .nav-sidebar .nav-link {
+    color: white !important;
+}
+
+.sidebar a:hover {
+    background-color: #14401f !important;
+}
+
+.object-tools .addlink,
+.button.default,
+.button.addlink,
+.button.changelink,
+.btn-success,
+.btn-info {
+    background-color: #f3c901 !important;
+    border-color: #f3c901 !important;
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+.btn-success:hover,
+.btn-info:hover {
+    background-color: #e2b900 !important;
+}
+
+.nav-sidebar .nav-link.active,
+.nav-sidebar .nav-link:hover {
+    font-weight: bold;
+}
+
+/* === DJANGO LOGIN PAGE === */
+.login-logo img,
+.brand-link img {
+    height: 60px !important;
+    width: auto;
+    object-fit: contain;
+}
+.login-page {
+    background-color: #f5f5f5;
+}
+.login-box {
+    border: 2px solid #1d572a;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(29, 87, 42, 0.2);
+}
+.login-box-msg {
+    color: #1d572a;
+    font-weight: bold;
+}
+.btn-primary {
+    background-color: #1d572a !important;
+    border-color: #1d572a !important;
+}
+.btn-primary:hover {
+    background-color: #14401f !important;
+    border-color: #14401f !important;
+}
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+.icheck-primary label {
+    color: #1d572a;
+}

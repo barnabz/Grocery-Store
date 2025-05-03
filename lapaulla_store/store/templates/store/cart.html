@@ -1,0 +1,54 @@
+{% extends 'store/base.html' %}
+{% load cart_extras %}  {# Load custom filters #}
+
+{% block title %} - Cart{% endblock %}
+
+{% block content %}
+<h2>Your Cart</h2>
+
+{% if cart.items.exists %}
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart.items.all %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+
+                <!-- Quantity Update Form -->
+                <td>
+                    <form method="post" action="{% url 'store:update_cart_item' item.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1" style="width: 50px;">
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
+
+                <td>${{ item.product.price }}</td>
+                <td>${{ item.product.price|multiply:item.quantity|floatformat:2 }}</td>
+
+                <!-- Remove Form -->
+                <td>
+                    <form method="post" action="{% url 'store:remove_from_cart' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" style="color:red;">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><strong>Total:</strong> ${{ total|floatformat:2 }}</p>
+    <a href="{% url 'store:checkout' %}">Proceed to Checkout</a>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}
