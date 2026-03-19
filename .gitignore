@@ -25,10 +25,10 @@ env/
 # Django specific
 *.log
 *.pot
-[Dd]atabase*
+db.sqlite3
 local_settings.py
 #media/  # Important:  Only ignore if you *don't* want to track media in Git
-#static/  #  Only ignore if you *don't* want to track static files.
+staticfiles/  #  Only ignore if you *don't* want to track static files.
 #/staticfiles/ # If you collect static files to this folder
 
 # Media files (optional - include if you don't want to track in git)
