@@ -16,13 +16,16 @@ __pycache__/
 
 # Virtual environment
 venv/
-env/
+.env
+.env.*
+!.env.example
 .venv/
 .env/
 */env/
 */.venv/
 
 # Django specific
+*.sqlite3
 *.log
 *.pot
 [Dd]atabase*
