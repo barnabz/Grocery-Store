@@ -44,8 +44,8 @@ JAZZMIN_SETTINGS = {
     "custom_css": "css/custom.css",  # make sure this exists in static/css
 }
 
-LOGOUT_REDIRECT_URL = "/"
-LOGIN_REDIRECT_URL = '/store/'
+LOGOUT_REDIRECT_URL = "store:home"
+LOGIN_REDIRECT_URL = "store:home"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF =  'lapaulla_store.urls'
-LOGIN_URL = '/login/'
+LOGIN_URL = "account:login"
 
 
 # Templates
