@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAPAULLA GROCERIES{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}?v=2">
     <style>
         body {
             margin: 0;
@@ -264,23 +264,7 @@
         {% block content %}{% endblock %}
     </main>
 
-    <nav class="bottom-nav">
-        <a href="{% url 'store:home' %}" class="{% if request.path == '/' %}active{% endif %}">
-            <i>🏠</i> Home
-        </a>
-        <a href="#" id = "bottomCategories">
-            <i>📦</i> Categories
-        </a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'store:cart' %}">
-            <i>🛒</i> Cart ({{ cart_item_count }})
-        </a>
-        <a href="{% url 'store:wallet' %}">
-            Wallet
-        </a>
-        {% endif %}
-    </nav>
-    <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const categoryMenu = document.getElementById('categoryMenu');

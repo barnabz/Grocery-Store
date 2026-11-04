@@ -20,17 +20,26 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# Wallet Model (For holding funds)
+# Wallet Model
 class Wallet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
-        return f"{self.user.username}'s Wallet: ${self.balance}"
+        return f"{self.user.username}'s Wallet: ₦{self.balance}"
+
+
+#Cart Model
 
 # Cart Model
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -40,20 +49,52 @@ class Cart(models.Model):
         return sum(item.quantity for item in self.items.all())
 
     def total_price(self):
-        return sum(item.total_price() for item in self.items.all())
+        return sum(
+            (item.total_price() for item in self.items.all()),
+            Decimal("0.00")
+        )
 
 
 # Cart Item Model
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    soup_kit = models.ForeignKey(
+        'SoupKit',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     quantity = models.PositiveIntegerField(default=1)
 
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=(
+                    models.Q(product__isnull=False, soup_kit__isnull=True)
+                    | models.Q(product__isnull=True, soup_kit__isnull=False)
+                ),
+                name='cart_item_exactly_one_type',
+            ),
+        ]
+
     def __str__(self):
-        return f"{self.quantity} x {self.product.name}"
+        item = self.product or self.soup_kit
+        return f"{self.quantity} x {item.name}"
 
     def total_price(self):
-        return self.product.price * self.quantity
+        item = self.product or self.soup_kit
+        return item.price * self.quantity
+
 
 
 # Order Model
@@ -75,20 +116,51 @@ class Order(models.Model):
 
 # Order Item Model (Assuming you have this)
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    soup_kit = models.ForeignKey(
+        'SoupKit',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    item_name = models.CharField(max_length=255, blank=True)
     quantity = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)    # Price at time of order
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=(
+                    models.Q(product__isnull=False, soup_kit__isnull=True)
+                    | models.Q(product__isnull=True, soup_kit__isnull=False)
+                ),
+                name='order_item_exactly_one_type',
+            ),
+        ]
+
     def __str__(self):
-        return f"{self.quantity} x {self.product.name} in Order {self.order.id}"
-
-
+        name = self.item_name or (
+            self.product.name if self.product else self.soup_kit.name
+        )
+        return f"{self.quantity} x {name} in Order {self.order.id}"
 
 # SoupKit Model
 class SoupKit(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock_quantity = models.PositiveIntegerField(default=0)
+    available = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='soup_kits') # Add this
     image = models.ImageField(upload_to='soup_kits/', null=True, blank=True)
     ingredients = models.ManyToManyField(

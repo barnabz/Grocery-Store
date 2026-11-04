@@ -96,3 +96,9 @@ tmp/
 *.seed
 *.bundle
 cheetah-cache/
+
+# Django collected static files
+staticfiles/
+
+# Private local backups
+*.backup

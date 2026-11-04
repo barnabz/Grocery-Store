@@ -4,18 +4,28 @@
 {% block content %}
 
 <!-- 🏪 Store Welcome Section -->
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-    <h2>Welcome to LAPAULLA GROCERIES</h2>
-    {% if request.user.is_authenticated %}
-        <div style="text-align: right;">
-            Wallet Balance: <strong style="color: green;">₦{{ wallet_balance|floatformat:2 }}</strong>
-        </div>
-    {% endif %}
-</div>
 
+<section class="store-hero">
+    <div class="hero-content">
+        <span class="hero-eyebrow">FRESHNESS FOR EVERY HOME</span>
+        <h1>Good food.<br>Easy shopping.</h1>
+        <p>
+            From fresh everyday groceries to convenient soup kits,
+            find everything you need to make every meal special.
+        </p>
+        <a href="#soup-kits" class="hero-button">Shop Now <span>→</span></a>
+        <span class="hero-tagline">QUALITY INGREDIENTS. DELICIOUS POSSIBILITIES.</span>
+    </div>
+   </section>
 <!-- 🥣 Soup Kits Section -->
-<h2>Soup Kits</h2>
-<section class="products">
+<div class="section-heading">
+    <div>
+        <span class="section-eyebrow">MADE FOR YOUR KITCHEN</span>
+        <h2>Our Soup Kits</h2>
+        <p>Everything you need to prepare delicious Nigerian soups, conveniently packed for you.</p>
+    </div>
+</div>
+<section class="products" id="soup-kits">
     {% for kit in soup_kits %}
         <div class="product-item">
             <div class="product-image-box">
@@ -31,9 +41,9 @@
                 <div class="price">
                     <span class="current-price">₦{{ kit.price }}</span>
                 </div>
-                <form method="post" action="{% url 'store:add_to_cart' kit.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                <form method="post" action="{% url 'store:add_soup_kit_to_cart' kit.id %}">
+                {% csrf_token %}
+                <button type="submit" class="add-to-cart-btn">Add to Cart</button>
                 </form>
             </div>
         </div>

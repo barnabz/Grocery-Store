@@ -1,18 +1,51 @@
-<!-- myapp/templates/store/checkout.html -->
+
 {% extends 'store/base.html' %}
-{% block title %} - Checkout{% endblock %}
+
+{% block title %}Checkout | Lapaulla Groceries{% endblock %}
+
 {% block content %}
-    <h2>Checkout</h2>
-    <p>Total: ${{ total|floatformat:2 }}</p>
-    <p>Wallet Balance: ${{ wallet_balance|floatformat:2 }}</p>
+<div class="checkout-container">
+    <h2>Complete Your Order</h2>
+
+    <div class="checkout-summary">
+        <h3>Order Summary</h3>
+
+        {% for item in cart.items.all %}
+            {% with product=item.product|default:item.soup_kit %}
+                <div class="checkout-item">
+                    <span>{{ product.name }} × {{ item.quantity }}</span>
+                    <span>₦{{ item.total_price|floatformat:2 }}</span>
+                </div>
+            {% endwith %}
+        {% endfor %}
+
+        <hr>
+        <p><strong>Total:</strong> ₦{{ total|floatformat:2 }}</p>
+        <p>Wallet Balance: ₦{{ wallet_balance|floatformat:2 }}</p>
+    </div>
+
     <form method="post">
         {% csrf_token %}
-        <label for="shipping_address">Shipping Address:</label>
-        <textarea id="shipping_address" name="shipping_address" required></textarea>
-        <label>
-            <input type="checkbox" name="use_wallet" {% if wallet_balance >= total %}checked{% endif %}>
-            Pay with Wallet (Balance: ${{ wallet_balance|floatformat:2 }})
+
+        <label for="shipping_address">Delivery Address</label>
+        <textarea
+            id="shipping_address"
+            name="shipping_address"
+            rows="4"
+            placeholder="Enter your full delivery address"
+            required
+        ></textarea>
+
+        <label class="wallet-option">
+            <input
+                type="checkbox"
+                name="use_wallet"
+                {% if wallet_balance >= total %}checked{% endif %}
+            >
+            Pay with Wallet
         </label>
+
         <button type="submit">Place Order</button>
     </form>
+</div>
 {% endblock %}

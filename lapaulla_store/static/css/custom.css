@@ -664,3 +664,842 @@ p {
 .category-menu a:hover {
     background-color: #f9f9f9;
 }
+
+
+/* =========================================
+   LAPAULLA GROCERIES - PREMIUM STOREFRONT
+========================================= */
+
+:root {
+    --brand-green: #174b35;
+    --brand-green-dark: #103b2a;
+    --fresh-green: #6b9b59;
+    --warm-cream: #f8f6ef;
+    --soft-white: #ffffff;
+    --gold-accent: #d5ad55;
+    --text-dark: #252c27;
+    --text-muted: #747c75;
+    --border-soft: #e9e9e1;
+}
+
+/* Storefront foundation */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--warm-cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px 28px 110px;
+}
+
+/* Premium header */
+.main-header {
+    background: var(--brand-green);
+    padding: 15px 28px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.09);
+}
+
+.main-header .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    gap: 22px;
+}
+
+.logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.45rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.brand-main {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.highlighted-brand {
+    color: #e3c477;
+    font-weight: 800;
+}
+
+.menu-toggle {
+    background: transparent;
+    color: #ffffff;
+    font-size: 25px;
+    padding: 3px 8px;
+}
+
+.search-bar {
+    background: #ffffff;
+    border: none;
+    border-radius: 7px;
+    height: 44px;
+    max-width: 540px;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.search-bar button {
+    background: var(--gold-accent);
+    color: var(--brand-green-dark);
+    padding: 0 20px;
+}
+
+.search-bar button:hover {
+    background: #c49a43;
+}
+
+.right-section {
+    gap: 18px;
+}
+
+.account-trigger {
+    color: #ffffff;
+}
+
+.cart-icon,
+.wallet-link {
+    color: #ffffff;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.wallet-link {
+    background: var(--gold-accent);
+    color: var(--brand-green-dark);
+    border-radius: 6px;
+    padding: 8px 13px;
+}
+
+/* Category dropdown */
+.category-menu {
+    top: 65px;
+    width: 270px;
+    border-radius: 0 0 9px 9px;
+    border-top: 3px solid var(--gold-accent);
+}
+
+.category-menu a {
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+/* Store section headings */
+main h2 {
+    color: var(--brand-green);
+    font-size: 1.65rem;
+    font-weight: 750;
+    margin: 30px 20px 5px;
+    letter-spacing: -0.4px;
+}
+
+main h3 {
+    color: var(--text-dark);
+}
+
+/* Product grids */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+    gap: 22px;
+    padding: 18px 20px 30px;
+    margin: 0;
+}
+
+.product-card,
+.product-item {
+    background: var(--soft-white);
+    border: 1px solid var(--border-soft);
+    border-radius: 13px;
+    overflow: hidden;
+    padding: 13px;
+    box-shadow: 0 3px 12px rgba(25, 55, 35, 0.045);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+}
+
+.product-card:hover,
+.product-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 24px rgba(25, 55, 35, 0.11);
+}
+
+.product-image-box {
+    height: 205px;
+    background: #f7f7f1;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin: 0;
+}
+
+.product-info {
+    padding: 13px 3px 5px;
+}
+
+.badge {
+    background: #edf4e9;
+    color: var(--brand-green);
+    border-radius: 30px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.product-name {
+    color: var(--text-dark);
+    font-size: 15px;
+    font-weight: 650;
+    height: auto;
+    min-height: 40px;
+    margin: 9px 0;
+}
+
+.price {
+    margin: 8px 0;
+}
+
+.current-price {
+    color: var(--brand-green);
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.rating {
+    color: var(--gold-accent);
+}
+
+.stock-left {
+    color: #a65a32 !important;
+    font-size: 12px;
+}
+
+/* Add to cart */
+.add-to-cart-btn {
+    background: var(--brand-green);
+    color: #ffffff;
+    border-radius: 7px;
+    padding: 11px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--brand-green-dark);
+}
+
+/* Messages */
+.message {
+    border-radius: 7px;
+    padding: 12px 16px;
+}
+
+/* Bottom navigation */
+.bottom-nav {
+    background: #ffffff;
+    border-top: 1px solid var(--border-soft);
+    padding: 12px 0;
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.bottom-nav a {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.bottom-nav a.active {
+    color: var(--brand-green);
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 12px 14px;
+    }
+
+    .main-header .container {
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 1.15rem;
+    }
+
+    .search-bar {
+        order: 3;
+        flex-basis: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .right-section {
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    main {
+        padding: 14px 10px 100px;
+    }
+
+    main h2 {
+        font-size: 1.35rem;
+        margin: 22px 10px 5px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        padding: 14px 8px 24px;
+    }
+
+    .product-card,
+    .product-item {
+        padding: 9px;
+    }
+
+    .product-image-box {
+        height: 145px;
+    }
+
+    .product-name {
+        font-size: 13px;
+    }
+
+    .current-price {
+        font-size: 16px;
+    }
+
+    .add-to-cart-btn {
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+
+    .bottom-nav a {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 380px) {
+    .right-section {
+        gap: 7px;
+    }
+
+    .cart-icon,
+    .wallet-link {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================
+   LAPAULLA HOMEPAGE HERO
+   Original brand green retained
+========================================= */
+
+.store-hero {
+    background: linear-gradient(120deg, #eaf2e9, #f7f9f4);
+    border: 1px solid #dce8da;
+    border-radius: 16px;
+    padding: 42px 48px;
+    margin: 12px 20px 38px;
+    min-height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    color: #1d572a;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.hero-content h1 {
+    color: #1d572a;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+    margin: 0 0 14px;
+}
+
+.hero-content p {
+    color: #526256;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 510px;
+    margin: 0 0 18px;
+}
+
+.hero-tagline {
+    display: block;
+    color: #6b786c;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    margin-top: 17px;
+}
+
+.hero-wallet {
+    background: #1d572a;
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 19px 23px;
+    min-width: 190px;
+    box-shadow: 0 5px 15px rgba(29, 87, 42, 0.12);
+}
+
+.hero-wallet span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: 0.85;
+    margin-bottom: 8px;
+}
+
+.hero-wallet strong {
+    font-size: 20px;
+    font-weight: 750;
+}
+
+/* Hero responsive layout */
+@media (max-width: 768px) {
+    .store-hero {
+        padding: 28px 22px;
+        margin: 8px 8px 28px;
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .hero-wallet {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+
+/* Hero refinement */
+.store-hero {
+    padding: 32px 42px;
+    min-height: 190px;
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    font-size: clamp(32px, 3.5vw, 42px);
+    line-height: 1.12;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    margin-bottom: 15px;
+}
+
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #1d572a;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 22px;
+    border-radius: 6px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-button:hover {
+    background: #14401f;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.hero-button span {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .store-hero {
+        padding: 26px 22px;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+}
+
+
+/* =========================================
+   HOMEPAGE PRODUCT SECTION HEADINGS
+========================================= */
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 0 20px 8px;
+}
+
+.section-eyebrow {
+    display: block;
+    color: #6b806d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    margin-bottom: 5px;
+}
+
+.section-heading h2 {
+    color: #1d572a;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
+    margin: 0 0 5px;
+}
+
+.section-heading p {
+    color: #707a71;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 620px;
+}
+
+#soup-kits {
+    padding-top: 18px;
+}
+
+@media (max-width: 768px) {
+    .section-heading {
+        margin: 0 10px 8px;
+    }
+
+    .section-heading h2 {
+        font-size: 23px;
+    }
+
+    .section-heading p {
+        font-size: 13px;
+    }
+}
+
+/* =========================================
+   HOMEPAGE PRODUCT SECTION HEADINGS
+========================================= */
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 0 20px 8px;
+}
+
+.section-eyebrow {
+    display: block;
+    color: #6b806d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    margin-bottom: 5px;
+}
+
+.section-heading h2 {
+    color: #1d572a;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
+    margin: 0 0 5px;
+}
+
+.section-heading p {
+    color: #707a71;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 620px;
+}
+
+#soup-kits {
+    padding-top: 18px;
+}
+
+@media (max-width: 768px) {
+    .section-heading {
+        margin: 0 10px 8px;
+    }
+
+    .section-heading h2 {
+        font-size: 23px;
+    }
+
+    .section-heading p {
+        font-size: 13px;
+    }
+}
+
+/* Prevent unwanted horizontal page scrolling */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* =================================
+   LAPAULLA BLENDED HERO DESIGN
+================================= */
+
+.store-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 370px;
+    padding: 40px 42px;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 60%;
+    max-width: 620px;
+}
+
+.hero-image {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0 18px 18px 0;
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Blend the photograph into the hero background */
+.hero-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+        to right,
+        #eaf2e9 0%,
+        rgba(234, 242, 233, 0.92) 14%,
+        rgba(234, 242, 233, 0.65) 32%,
+        rgba(234, 242, 233, 0.18) 52%,
+        transparent 72%
+    );
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .store-hero {
+        min-height: 480px;
+        padding: 28px 24px;
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-image {
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 55%;
+        border-radius: 0 0 18px 18px;
+    }
+
+    .hero-image::before {
+        background: linear-gradient(
+            to bottom,
+            #eaf2e9 0%,
+            rgba(234, 242, 233, 0.8) 18%,
+            rgba(234, 242, 233, 0.2) 48%,
+            transparent 75%
+        );
+    }
+}
+
+/* LAPAULLA - FULL BLEED BLENDED HERO */
+
+.store-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 370px;
+    padding: 40px 42px;
+    overflow: hidden;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            #eaf2e9 0%,
+            rgba(234, 242, 233, 0.98) 30%,
+            rgba(234, 242, 233, 0.82) 43%,
+            rgba(234, 242, 233, 0.30) 59%,
+            rgba(234, 242, 233, 0) 75%
+        ),
+        url("/static/images/hero-groceries.jpg");
+
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 58%;
+    max-width: 620px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .store-hero {
+        min-height: 480px;
+        padding: 28px 24px;
+
+        background-image:
+            linear-gradient(
+                180deg,
+                #eaf2e9 0%,
+                rgba(234, 242, 233, 0.96) 38%,
+                rgba(234, 242, 233, 0.35) 65%,
+                rgba(234, 242, 233, 0.05) 100%
+            ),
+            url("/static/images/hero-groceries.jpg");
+
+        background-position: center bottom;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+/* =================================
+   PRODUCT CARD ALIGNMENT
+================================= */
+
+.product-card,
+.product-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-image-box {
+    height: 205px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-name {
+    min-height: 42px;
+}
+
+.product-card > a {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-card > a .product-info {
+    flex: 1;
+}
+
+.product-card > form,
+.product-info > form {
+    margin-top: auto;
+    width: 100%;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .product-image-box {
+        height: 145px;
+    }
+
+    .product-name {
+        min-height: 38px;
+    }
+}
